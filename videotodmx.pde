@@ -14,16 +14,18 @@ Movie mov;
 PixelBoxArray boxes;
 
 void setup() {
-  size(640, 360);
+  mov = new Movie(this, "Rolls Royce 01.mov");
+  size(1142, 412);
   noStroke();
-  mov = new Movie(this, "transit.mov");
+  
   mov.loop();
 
   boxes = new PixelBoxArray();
 
-  boxes.generate(6, 6, 300, 80, 30);  
+  // numX, numY, offsetX, offsetY, length
+  boxes.generate(11, 3, 100, 50, 80);  
 
-  //boxes.startRecording();
+  boxes.startRecording();
 }
 
 // Display values from movie
@@ -31,7 +33,6 @@ void draw() {
   if (mov.available() == true) {
     mov.read();
     mov.loadPixels();
-    
     boxes.update(mov);
   }
 
@@ -42,12 +43,13 @@ void draw() {
   
   // draw the boxes
   boxes.draw();
+  
 }
 
-// void keyPressed() {
-//   boxes.stopRecording();
-//   exit(); // Stops the program
-// }
+void keyPressed() {
+  boxes.stopRecording();
+  exit(); // Stops the program
+}
 
 
 

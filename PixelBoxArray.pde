@@ -5,6 +5,8 @@ class PixelBoxArray{
 	private int numChannelsPerBox = 4;
 	private int dmxStartChannel = 0;
 
+        private int offsetX, offsetY; 
+
 	private boolean recording = false;
 	private PrintWriter output;
 
@@ -13,12 +15,22 @@ class PixelBoxArray{
 	}
 
 	public void generate(int numX, int numY, int offsetX, int offsetY, int length){
+                this.offsetX = offsetX;
+                this.offsetY = offsetY;
   		for(int i = 0; i<numY; i++){
     		for(int j = 0; j < numX; j++){
       			add(offsetX + (j*length), offsetY + (i*length), length);
     		}
   		}
 	}
+
+        public void moveTo(int x, int y){
+          int deltaX = offsetX - x;
+          int deltaY = offsetY - y;
+          for(PixelBox box : boxes){
+            box.moveTo(box.getX() - deltaX, box.getY() - deltaY);
+          }
+        }
 
 	public void add(int x, int y, int length){
 		numBoxes++;

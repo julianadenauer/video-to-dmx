@@ -12,11 +12,19 @@ class PixelBox {
     #c7c3a2, #b0a68d, #d0cab0, #92948d, #5c5b51, #413f32, #878783, #70706c, #868681, #233327, #4a4731, #493232, #503535, #583b4b, #292627, #241f22, #070707
   };
   
+  public int getX(){return x;}
+  public int getY(){return y;}
+  
   public PixelBox(int x, int y, int length, int dmxStartChannel){
     this.x = x;
     this.y = y;
     this.length = length;
     this.dmxStartChannel = dmxStartChannel;
+  }
+  
+  public void moveTo(int x, int y){
+    this.x = x;
+    this.y = y;
   }
   
   public void draw(int offsetX, int offsetY){
